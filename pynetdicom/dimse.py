@@ -308,7 +308,8 @@ class DIMSEServiceProvider:
                 msg_id = cast(int, d_primitive.MessageIDBeingRespondedTo)
                 self.cancel_req[msg_id] = d_primitive
             elif (
-                isinstance(d_primitive, N_EVENT_REPORT) and d_primitive.is_valid_request
+                isinstance(d_primitive, (N_EVENT_REPORT, C_STORE)) and
+                d_primitive.is_valid_request
             ):
                 # N-EVENT-REPORT service requests are handled immediately
                 # Ugly hack, but would block the DUL otherwise
